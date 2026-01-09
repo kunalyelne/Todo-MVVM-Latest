@@ -9,6 +9,7 @@ import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
 import com.butterchickenstudios.todo.presentation.screen.details.extension.TodoDetailsEntry
 import com.butterchickenstudios.todo.presentation.screen.todo.extension.TodoEntry
+import com.butterchickenstudios.todo.presentation.navigation.event.NavigationEvent
 
 @Composable
 fun RootContainer(
@@ -17,7 +18,7 @@ fun RootContainer(
 ) {
     NavDisplay(
         backStack = viewModel.backStack,
-        onBack = { viewModel.backStack.removeLastOrNull() },
+        onBack = { viewModel.onEvent(NavigationEvent.OnBack) },
         entryDecorators = listOf(
             rememberSaveableStateHolderNavEntryDecorator(),
             // Scope the ViewModel to NavKey's entry in backstack rather than to the Activity's Scope
