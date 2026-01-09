@@ -19,7 +19,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.butterchickenstudios.todo.core.ui.util.UiState
 import com.butterchickenstudios.todo.core.ui.components.LoadingIndicator
 import com.butterchickenstudios.todo.presentation.navigation.event.NavigationEvent
-import com.butterchickenstudios.todo.presentation.navigation.screen.Screen
+import com.butterchickenstudios.todo.presentation.screen.todo.action.TodoAction
 import com.butterchickenstudios.todo.presentation.screen.todo.component.AddTodoBottomSheet
 import com.butterchickenstudios.todo.presentation.screen.todo.component.TodoList
 
@@ -66,7 +66,7 @@ fun TodoScreen(
             AddTodoBottomSheet(
                 onDismiss = { showBottomSheet = false },
                 onSave = { todo ->
-                    viewModel.addTodo(todo)
+                    viewModel.onAction(TodoAction.AddTodo(todo))
                     showBottomSheet = false
                 }
             )
