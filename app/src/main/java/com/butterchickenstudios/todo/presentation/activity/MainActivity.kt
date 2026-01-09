@@ -9,7 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import com.butterchickenstudios.todo.core.ui.theme.TodoTheme
-import com.butterchickenstudios.todo.presentation.navigation.AppNavGraph
+import com.butterchickenstudios.todo.presentation.navigation.RootContainer
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -20,7 +20,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             TodoTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    AppNavGraph(modifier = Modifier.padding(innerPadding))
+                    RootContainer(modifier = Modifier.padding(innerPadding))
                 }
             }
         }

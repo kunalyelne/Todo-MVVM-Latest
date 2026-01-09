@@ -1,4 +1,4 @@
-package com.butterchickenstudios.todo.core.common
+package com.butterchickenstudios.todo.core.common.network
 
 sealed class Result<out T> {
     data class Success<T>(val data: T) : Result<T>()

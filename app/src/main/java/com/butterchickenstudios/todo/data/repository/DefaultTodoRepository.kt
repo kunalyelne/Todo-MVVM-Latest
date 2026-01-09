@@ -30,6 +30,10 @@ class DefaultTodoRepository @Inject constructor(
     override suspend fun updateTodo(todo: Todo) =
         dao.updateTodo(todo.toEntity())
 
+    override suspend fun updateTodoCompletionById(id: Int, isCompleted: Boolean) {
+        dao.updateTodoCompletionById(id, isCompleted)
+    }
+
     override suspend fun deleteTodo(todo: Todo) =
         dao.deleteTodo(todo.toEntity())
 

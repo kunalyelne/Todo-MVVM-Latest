@@ -5,19 +5,21 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.butterchickenstudios.todo.domain.model.Todo
+import com.butterchickenstudios.todo.presentation.navigation.event.NavigationEvent
+import com.butterchickenstudios.todo.presentation.screen.todo.action.TodoAction
 
 @Composable
 fun TodoList(
     todos: List<Todo>,
-    onToggle: (Todo) -> Unit,
-    onTodoClick: (Int) -> Unit
+    onAction: (TodoAction) -> Unit,
+    onNavigationEvent: (NavigationEvent) -> Unit
 ) {
     LazyColumn {
         items(todos) { todo ->
             TodoItem(
                 todo = todo,
-                onToggle = onToggle,
-                onClick = onTodoClick
+                onAction = onAction,
+                onNavigationEvent = onNavigationEvent
             )
         }
     }
@@ -32,7 +34,7 @@ fun TodoListPreview() {
             Todo(id = 2, title = "Todo 2", isCompleted = false),
             Todo(id = 3, title = "Todo 3", isCompleted = false)
         ),
-        onToggle = {},
-        onTodoClick = {}
+        onAction = {},
+        onNavigationEvent = {}
     )
 }

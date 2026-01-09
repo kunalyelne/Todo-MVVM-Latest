@@ -32,6 +32,9 @@ interface TodoDao {
     @Update
     suspend fun updateTodo(todo: TodoEntity)
 
+    @Query("UPDATE todos SET isCompleted = :isCompleted WHERE id = :id")
+    suspend fun updateTodoCompletionById(id: Int, isCompleted: Boolean)
+
     @Delete
     suspend fun deleteTodo(todo: TodoEntity)
 

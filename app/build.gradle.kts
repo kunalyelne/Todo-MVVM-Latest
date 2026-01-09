@@ -61,7 +61,7 @@ dependencies {
     implementation(libs.bundles.lifecycle)
 
     // Navigation
-    implementation(libs.androidx.navigation.compose)
+    implementation(libs.bundles.navigation)
 
     // Hilt
     implementation(libs.hilt.android)

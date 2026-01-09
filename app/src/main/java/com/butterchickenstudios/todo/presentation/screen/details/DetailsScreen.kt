@@ -20,13 +20,20 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.butterchickenstudios.todo.core.ui.components.LoadingIndicator
 import com.butterchickenstudios.todo.core.ui.util.UiState
+import com.butterchickenstudios.todo.presentation.navigation.event.NavigationEvent
+import com.butterchickenstudios.todo.presentation.navigation.screen.Screen
 import com.butterchickenstudios.todo.presentation.screen.details.component.TodoDetails
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailsScreen(
-    viewModel: DetailsScreenViewModel = hiltViewModel(),
-    onBackClick: () -> Unit = {}
+    key: Screen.TodoDetails,
+    onNavigationEvent: (NavigationEvent) -> Unit,
+    viewModel: DetailsScreenViewModel = hiltViewModel<DetailsScreenViewModel, DetailsScreenViewModel.Factory>(
+        creationCallback = { factory ->
+            factory.create(key)
+        }
+    )
 ) {
     val state by viewModel.todosState.collectAsStateWithLifecycle()
 
@@ -35,7 +42,7 @@ fun DetailsScreen(
             TopAppBar(
                 title = { Text("Todo Details") },
                 navigationIcon = {
-                    IconButton(onClick = onBackClick) {
+                    IconButton(onClick = { onNavigationEvent(NavigationEvent.OnBack) }) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Back")
                     }
                 }

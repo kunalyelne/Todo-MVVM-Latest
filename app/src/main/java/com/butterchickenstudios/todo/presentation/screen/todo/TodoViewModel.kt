@@ -9,6 +9,7 @@ import com.butterchickenstudios.todo.domain.model.Todo
 import com.butterchickenstudios.todo.domain.usecase.AddTodoUseCase
 import com.butterchickenstudios.todo.domain.usecase.GetAllTodosUseCase
 import com.butterchickenstudios.todo.domain.usecase.ToggleTodoUseCase
+import com.butterchickenstudios.todo.presentation.screen.todo.action.TodoAction
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -55,9 +56,16 @@ class TodoViewModel @Inject constructor (
         }
     }
 
-    fun toggleTodo(todo: Todo) {
+    fun toggleTodo(id: Int, isCompleted: Boolean) {
         viewModelScope.launch(dispatchers.io) {
-            toggleTodo.invoke(todo)
+            toggleTodo.invoke(id, isCompleted)
+        }
+    }
+
+    fun onAction(action: TodoAction) {
+        when (action) {
+            is TodoAction.AddTodo -> addTodo(action.todo)
+            is TodoAction.OnToggleTodo -> toggleTodo(action.id, action.isCompleted)
         }
     }
 }

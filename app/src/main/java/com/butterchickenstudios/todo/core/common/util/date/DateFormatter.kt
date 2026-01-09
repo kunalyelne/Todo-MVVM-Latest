@@ -1,4 +1,4 @@
-package com.butterchickenstudios.todo.core.common.util
+package com.butterchickenstudios.todo.core.common.util.date
 
 import java.text.SimpleDateFormat
 import java.util.Date
